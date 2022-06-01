@@ -1,7 +1,16 @@
 package com.example;
 
-import javax.swing.*;  
-import java.awt.event.*;  
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class GUI implements ActionListener{  
     JTextField tf1;
@@ -24,6 +33,7 @@ public class GUI implements ActionListener{
         f.add(b1);
         
         f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        f.getContentPane().setBackground(Color.YELLOW);
         f.setLayout(null);  
         f.setVisible(true);  
     }    
@@ -59,20 +69,25 @@ public class GUI implements ActionListener{
         JLabel currFeelsLike = new JLabel("Feels Like: " + weatherFeelsLike);
         JLabel currWindSpeed = new JLabel("Wind Speed: " + windSpeed);
         JLabel currWindDeg = new JLabel("Wind Angle: " + windDeg);
+        JLabel icon = new JLabel(new ImageIcon(new URL(weather.getWeatherIconURL())));
 
         currDescription.setBounds(25, 0, 350, 30);
         currTemp.setBounds(25, 50, 350, 30);
         currFeelsLike.setBounds(25, 100, 350, 30);
         currWindSpeed.setBounds(25, 150, 250, 30);
         currWindDeg.setBounds(25, 200, 250, 30);
+        icon.setBounds(25, 250, 250, 250);
 
         f.add(currDescription);
         f.add(currTemp);
         f.add(currFeelsLike);
         f.add(currWindSpeed);
         f.add(currWindDeg);
+        f.add(icon);;
 
-        f.setTitle("Weather in " + city);
+        f.setIconImage(new ImageIcon(new URL(weather.getWeatherIconURL())).getImage());
+
+        f.setTitle("Weather in " + city);        
 
         f.revalidate();
         f.repaint();

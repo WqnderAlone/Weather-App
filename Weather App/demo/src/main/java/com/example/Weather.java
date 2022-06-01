@@ -80,6 +80,20 @@ public class Weather {
     return temp;
   }
 
+  public String getWeatherIconURL() {
+    String url;
+    String temp = getWeatherJson();
+    tempObj = new JsonParser().parse(temp).getAsJsonObject();
+
+    temp = tempObj.get("icon").toString();
+
+    url = "http://openweathermap.org/img/wn/" + temp + "@2x.png";
+
+    url = url.replace("\"", "");
+
+    return url;
+  }
+
   public String getMainJson() {
     String temp = obj.get("main").toString();
     
